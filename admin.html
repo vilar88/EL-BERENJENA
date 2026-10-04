@@ -34,19 +34,18 @@ body {
   line-height: 1.6; padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
   -webkit-font-smoothing: antialiased;
 }
-
-header {
-  text-align: center; padding: 2rem 1.5rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
+header { text-align: center; padding: 2rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
 header h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: .2rem; }
 header p { color: var(--text-secondary); font-size: .9rem; }
-
-.toolbar {
-  max-width: var(--max-w); margin: 1rem auto; padding: 0 1.5rem;
-  display: flex; gap: .75rem; flex-wrap: wrap;
+.sync-status {
+  display: inline-block; margin-top: .5rem; padding: .25rem .8rem; border-radius: 12px;
+  font-size: .75rem; font-weight: 500;
 }
+.sync-ok { background: var(--accent-light); color: var(--accent); }
+.sync-pending { background: #fff3cd; color: #856404; }
+.sync-error { background: var(--danger-light); color: var(--danger); }
 
+.toolbar { max-width: var(--max-w); margin: 1rem auto; padding: 0 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
 .btn {
   padding: .6rem 1.2rem; border: none; border-radius: var(--radius);
   font-family: inherit; font-size: .9rem; font-weight: 500; cursor: pointer; transition: all .2s;
@@ -58,10 +57,9 @@ header p { color: var(--text-secondary); font-size: .9rem; }
 .btn-danger { background: var(--danger-light); color: var(--danger); }
 .btn-danger:hover { background: var(--danger); color: #fff; }
 .btn-sm { padding: .4rem .8rem; font-size: .8rem; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
 
 .container { max-width: var(--max-w); margin: 0 auto; padding: 1rem 1.5rem 3rem; }
-
-/* Recipe list in admin */
 .admin-list { display: flex; flex-direction: column; gap: .75rem; }
 .admin-card {
   background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
@@ -72,18 +70,13 @@ header p { color: var(--text-secondary); font-size: .9rem; }
 .admin-card-info { color: var(--text-secondary); font-size: .8rem; }
 .admin-card-actions { display: flex; gap: .5rem; flex-shrink: 0; }
 
-/* Editor form */
 .editor { display: none; }
 .editor.visible { display: block; }
 .form-section {
   background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 1.25rem 1.5rem; margin-bottom: 1rem;
 }
-.form-section h3 {
-  font-size: .95rem; font-weight: 600; margin-bottom: .8rem;
-  padding-bottom: .4rem; border-bottom: 1px solid var(--border);
-}
-
+.form-section h3 { font-size: .95rem; font-weight: 600; margin-bottom: .8rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
 .field { margin-bottom: .8rem; }
 .field label { display: block; font-size: .82rem; font-weight: 500; color: var(--text-secondary); margin-bottom: .25rem; }
 .field input, .field textarea, .field select {
@@ -94,7 +87,6 @@ header p { color: var(--text-secondary); font-size: .9rem; }
 .field textarea { resize: vertical; min-height: 60px; }
 .field-row { display: flex; gap: .75rem; flex-wrap: wrap; }
 .field-row .field { flex: 1; min-width: 150px; }
-
 .dynamic-list { display: flex; flex-direction: column; gap: .5rem; }
 .dynamic-row { display: flex; gap: .5rem; align-items: center; }
 .dynamic-row input { flex: 1; }
@@ -104,33 +96,20 @@ header p { color: var(--text-secondary); font-size: .9rem; }
   font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
 .dynamic-row .remove-row:hover { background: var(--danger); color: #fff; }
-
-.group-block {
-  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-  padding: 1rem; margin-bottom: .75rem;
-}
+.group-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: .75rem; }
 .group-block h4 { font-size: .85rem; margin-bottom: .5rem; display: flex; justify-content: space-between; align-items: center; }
-
 .step-textarea {
   width: 100%; padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 6px;
   background: var(--card-bg); color: var(--text); font-family: inherit; font-size: .9rem;
   resize: vertical; min-height: 50px; outline: none;
 }
 .step-textarea:focus { border-color: var(--accent); }
-
 .toast {
   position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
   background: var(--accent); color: #fff; padding: .7rem 1.5rem; border-radius: var(--radius);
   font-size: .9rem; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100;
 }
 .toast.show { opacity: 1; }
-
-.import-area {
-  border: 2px dashed var(--border); border-radius: var(--radius); padding: 2rem;
-  text-align: center; color: var(--text-secondary); font-size: .9rem; margin-bottom: 1rem;
-  cursor: pointer; transition: border-color .2s;
-}
-.import-area:hover { border-color: var(--accent); }
 
 @media (max-width: 600px) {
   header h1 { font-size: 1.6rem; }
@@ -144,14 +123,14 @@ header p { color: var(--text-secondary); font-size: .9rem; }
 <header>
   <h1>&#9998; Editor de Recetas</h1>
   <p>Añade, edita y gestiona tu biblioteca</p>
+  <div id="sync-badge"></div>
 </header>
 
 <div class="container">
-  <!-- MAIN LIST VIEW -->
   <div id="main-view">
     <div class="toolbar">
       <button class="btn btn-primary" onclick="newRecipe()">+ Nueva receta</button>
-      <button class="btn btn-secondary" onclick="downloadJSON()">&#11015; Descargar recipes.json</button>
+      <button class="btn btn-secondary" onclick="downloadJSON()">&#11015; Descargar JSON</button>
       <label class="btn btn-secondary" style="cursor:pointer">&#11014; Importar JSON
         <input type="file" accept=".json" style="display:none" onchange="importJSON(event)">
       </label>
@@ -163,13 +142,11 @@ header p { color: var(--text-secondary); font-size: .9rem; }
     </div>
   </div>
 
-  <!-- EDITOR VIEW -->
   <div class="editor" id="editor">
     <div class="toolbar" style="margin:0 0 1rem;padding:0">
       <button class="btn btn-secondary" onclick="cancelEdit()">&#8592; Cancelar</button>
       <button class="btn btn-primary" onclick="saveRecipe()">Guardar receta</button>
     </div>
-
     <div class="form-section">
       <h3>Información general</h3>
       <div class="field"><label>Título</label><input id="f-title" placeholder="Curry verde tailandés…"></div>
@@ -186,19 +163,16 @@ header p { color: var(--text-secondary); font-size: .9rem; }
       </div>
       <div class="field"><label>Etiquetas (separadas por comas)</label><input id="f-tags" placeholder="Asia, Pollo, Picante"></div>
     </div>
-
     <div class="form-section">
       <h3>Ingredientes</h3>
       <div id="ing-groups"></div>
       <button class="btn btn-secondary btn-sm" onclick="addIngGroup()">+ Grupo de ingredientes</button>
     </div>
-
     <div class="form-section">
       <h3>Pasos</h3>
       <div id="step-groups"></div>
       <button class="btn btn-secondary btn-sm" onclick="addStepGroup()">+ Grupo de pasos</button>
     </div>
-
     <div class="toolbar" style="margin:0;padding:0">
       <button class="btn btn-primary" onclick="saveRecipe()">Guardar receta</button>
       <button class="btn btn-secondary" onclick="cancelEdit()">Cancelar</button>
@@ -209,23 +183,88 @@ header p { color: var(--text-secondary); font-size: .9rem; }
 <div class="toast" id="toast"></div>
 
 <script>
+const API_KEY = '$2a$10$udT0k.3ZZQVVuuPPv/yajO5JZF5gR8chV/m6V.SwqX0t1NeVb9Ia6';
+let BIN_ID = localStorage.getItem('jsonbin_bin_id') || '';
 let recipes = [];
 let editingIndex = -1;
 
 async function init() {
-  try {
-    const stored = localStorage.getItem('recipes_admin');
-    if (stored) { recipes = JSON.parse(stored); }
-    else {
+  if (BIN_ID) {
+    // Cargar desde JSONBin
+    await loadFromCloud();
+  } else {
+    // Primera vez: cargar desde local y crear bin
+    try {
       const res = await fetch('recipes.json');
       recipes = await res.json();
-      localStorage.setItem('recipes_admin', JSON.stringify(recipes));
-    }
-  } catch(e) { recipes = []; }
+    } catch(e) { recipes = []; }
+    await createBin();
+  }
   renderAdminList();
+  updateSyncBadge('ok');
 }
 
-function persist() { localStorage.setItem('recipes_admin', JSON.stringify(recipes)); }
+async function createBin() {
+  updateSyncBadge('pending');
+  try {
+    const res = await fetch('https://api.jsonbin.io/v3/b', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY, 'X-Bin-Name': 'recetas', 'X-Bin-Private': 'false' },
+      body: JSON.stringify(recipes)
+    });
+    const data = await res.json();
+    if (data.metadata && data.metadata.id) {
+      BIN_ID = data.metadata.id;
+      localStorage.setItem('jsonbin_bin_id', BIN_ID);
+      updateSyncBadge('ok');
+      toast('Almacén online creado');
+    } else { throw new Error('No bin ID'); }
+  } catch(e) {
+    updateSyncBadge('error');
+    toast('Error al crear almacén online');
+  }
+}
+
+async function loadFromCloud() {
+  updateSyncBadge('pending');
+  try {
+    const res = await fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', {
+      headers: { 'X-Master-Key': API_KEY }
+    });
+    const data = await res.json();
+    recipes = data.record || [];
+    updateSyncBadge('ok');
+  } catch(e) {
+    updateSyncBadge('error');
+    toast('Error al cargar recetas');
+    recipes = [];
+  }
+}
+
+async function saveToCloud() {
+  if (!BIN_ID) { await createBin(); return; }
+  updateSyncBadge('pending');
+  try {
+    const res = await fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+      body: JSON.stringify(recipes)
+    });
+    const data = await res.json();
+    if (data.metadata) { updateSyncBadge('ok'); }
+    else { throw new Error(); }
+  } catch(e) {
+    updateSyncBadge('error');
+    toast('Error al sincronizar. Cambios guardados localmente.');
+  }
+}
+
+function updateSyncBadge(state) {
+  const el = document.getElementById('sync-badge');
+  if (state === 'ok') el.innerHTML = '<span class="sync-status sync-ok">&#10003; Sincronizado</span>';
+  else if (state === 'pending') el.innerHTML = '<span class="sync-status sync-pending">&#8635; Sincronizando…</span>';
+  else el.innerHTML = '<span class="sync-status sync-error">&#10007; Error de sincronización</span>';
+}
 
 function toast(msg) {
   const t = document.getElementById('toast');
@@ -239,10 +278,7 @@ function renderAdminList() {
   if (!recipes.length) { list.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-secondary)">No hay recetas. Crea una nueva o importa un JSON.</div>'; return; }
   list.innerHTML = recipes.map((r, i) => `
     <div class="admin-card">
-      <div>
-        <h3>${r.title}</h3>
-        <span class="admin-card-info">${r.source} · ${r.time} · ${r.tags.join(', ')}</span>
-      </div>
+      <div><h3>${r.title}</h3><span class="admin-card-info">${r.source||''} · ${r.time||''} · ${(r.tags||[]).join(', ')}</span></div>
       <div class="admin-card-actions">
         <button class="btn btn-secondary btn-sm" onclick="editRecipe(${i})">Editar</button>
         <button class="btn btn-danger btn-sm" onclick="deleteRecipe(${i})">Borrar</button>
@@ -251,69 +287,44 @@ function renderAdminList() {
 }
 
 function slugify(text) {
-  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-// === INGREDIENT GROUPS ===
 let ingGroupCount = 0;
 function addIngGroup(name, items) {
   const id = ingGroupCount++;
   const div = document.createElement('div');
-  div.className = 'group-block';
-  div.id = 'ing-g-' + id;
-  div.innerHTML = `
-    <h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent);outline:none;width:70%" value="${name || 'Grupo ' + (id+1)}" class="ing-group-name">
-    <button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4>
-    <div class="dynamic-list" id="ing-items-${id}"></div>
-    <button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addIngRow(${id})">+ Ingrediente</button>`;
+  div.className = 'group-block'; div.id = 'ing-g-' + id;
+  div.innerHTML = `<h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent);outline:none;width:70%" value="${name||'Grupo '+(id+1)}" class="ing-group-name"><button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4><div class="dynamic-list" id="ing-items-${id}"></div><button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addIngRow(${id})">+ Ingrediente</button>`;
   document.getElementById('ing-groups').appendChild(div);
   if (items) items.forEach(([n, q]) => addIngRow(id, n, q));
   else { addIngRow(id); addIngRow(id); }
 }
 function addIngRow(gid, name, qty) {
-  const row = document.createElement('div');
-  row.className = 'dynamic-row';
-  row.innerHTML = `<input placeholder="Ingrediente" value="${name || ''}"><input placeholder="Cantidad" style="max-width:120px" value="${qty || ''}"><button class="remove-row" onclick="this.parentElement.remove()">&times;</button>`;
+  const row = document.createElement('div'); row.className = 'dynamic-row';
+  row.innerHTML = `<input placeholder="Ingrediente" value="${name||''}"><input placeholder="Cantidad" style="max-width:120px" value="${qty||''}"><button class="remove-row" onclick="this.parentElement.remove()">&times;</button>`;
   document.getElementById('ing-items-' + gid).appendChild(row);
 }
 
-// === STEP GROUPS ===
 let stepGroupCount = 0;
 function addStepGroup(name, steps) {
   const id = stepGroupCount++;
-  const div = document.createElement('div');
-  div.className = 'group-block';
-  div.id = 'step-g-' + id;
-  div.innerHTML = `
-    <h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent);outline:none;width:70%" value="${name || 'Grupo ' + (id+1)}" class="step-group-name">
-    <button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4>
-    <div class="dynamic-list" id="step-items-${id}"></div>
-    <button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addStepRow(${id})">+ Paso</button>`;
+  const div = document.createElement('div'); div.className = 'group-block'; div.id = 'step-g-' + id;
+  div.innerHTML = `<h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent);outline:none;width:70%" value="${name||'Grupo '+(id+1)}" class="step-group-name"><button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4><div class="dynamic-list" id="step-items-${id}"></div><button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addStepRow(${id})">+ Paso</button>`;
   document.getElementById('step-groups').appendChild(div);
   if (steps) steps.forEach(s => addStepRow(id, s));
   else { addStepRow(id); addStepRow(id); }
 }
 function addStepRow(gid, text) {
-  const row = document.createElement('div');
-  row.className = 'dynamic-row';
-  row.style.alignItems = 'flex-start';
-  row.innerHTML = `<textarea class="step-textarea" placeholder="Describe el paso…">${text || ''}</textarea><button class="remove-row" onclick="this.parentElement.remove()" style="margin-top:6px">&times;</button>`;
+  const row = document.createElement('div'); row.className = 'dynamic-row'; row.style.alignItems = 'flex-start';
+  row.innerHTML = `<textarea class="step-textarea" placeholder="Describe el paso…">${text||''}</textarea><button class="remove-row" onclick="this.parentElement.remove()" style="margin-top:6px">&times;</button>`;
   document.getElementById('step-items-' + gid).appendChild(row);
 }
 
-// === EDITOR ===
-function newRecipe() {
-  editingIndex = -1;
-  clearForm();
-  addIngGroup(); addStepGroup();
-  showEditor();
-}
+function newRecipe() { editingIndex = -1; clearForm(); addIngGroup(); addStepGroup(); showEditor(); }
 
 function editRecipe(i) {
-  editingIndex = i;
-  const r = recipes[i];
-  clearForm();
+  editingIndex = i; const r = recipes[i]; clearForm();
   document.getElementById('f-title').value = r.title;
   document.getElementById('f-source').value = r.source || '';
   document.getElementById('f-sourceUrl').value = r.sourceUrl || '';
@@ -345,10 +356,9 @@ function cancelEdit() {
   document.getElementById('main-view').style.display = 'block';
 }
 
-function saveRecipe() {
+async function saveRecipe() {
   const title = document.getElementById('f-title').value.trim();
   if (!title) { toast('El título es obligatorio'); return; }
-
   const recipe = {
     id: editingIndex >= 0 ? recipes[editingIndex].id : slugify(title),
     title,
@@ -358,10 +368,8 @@ function saveRecipe() {
     time: document.getElementById('f-time').value.trim(),
     servings: document.getElementById('f-servings').value.trim(),
     tags: document.getElementById('f-tags').value.split(',').map(t => t.trim()).filter(Boolean),
-    ingredientGroups: [],
-    stepGroups: []
+    ingredientGroups: [], stepGroups: []
   };
-
   document.querySelectorAll('#ing-groups .group-block').forEach(block => {
     const name = block.querySelector('.ing-group-name').value.trim();
     const items = [];
@@ -372,57 +380,49 @@ function saveRecipe() {
     });
     if (items.length) recipe.ingredientGroups.push({ name, items });
   });
-
   document.querySelectorAll('#step-groups .group-block').forEach(block => {
     const name = block.querySelector('.step-group-name').value.trim();
     const steps = [];
     block.querySelectorAll('.step-textarea').forEach(ta => { const v = ta.value.trim(); if (v) steps.push(v); });
     if (steps.length) recipe.stepGroups.push({ name, steps });
   });
-
   if (editingIndex >= 0) recipes[editingIndex] = recipe;
   else recipes.push(recipe);
-
-  persist();
   cancelEdit();
   renderAdminList();
-  toast(editingIndex >= 0 ? 'Receta actualizada' : 'Receta creada');
+  await saveToCloud();
+  toast(editingIndex >= 0 ? 'Receta actualizada y sincronizada' : 'Receta creada y sincronizada');
 }
 
-function deleteRecipe(i) {
+async function deleteRecipe(i) {
   if (!confirm('¿Borrar "' + recipes[i].title + '"?')) return;
   recipes.splice(i, 1);
-  persist();
   renderAdminList();
-  toast('Receta borrada');
+  await saveToCloud();
+  toast('Receta borrada y sincronizada');
 }
 
 function downloadJSON() {
   const blob = new Blob([JSON.stringify(recipes, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'recipes.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'recipes.json'; a.click(); URL.revokeObjectURL(a.href);
   toast('recipes.json descargado');
 }
 
 function importJSON(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
-  reader.onload = (ev) => {
+  reader.onload = async (ev) => {
     try {
       const data = JSON.parse(ev.target.result);
       if (!Array.isArray(data)) throw new Error();
       recipes = data;
-      persist();
       renderAdminList();
-      toast(data.length + ' recetas importadas');
+      await saveToCloud();
+      toast(data.length + ' recetas importadas y sincronizadas');
     } catch(err) { toast('Error: JSON no válido'); }
   };
-  reader.readAsText(file);
-  e.target.value = '';
+  reader.readAsText(file); e.target.value = '';
 }
 
 init();
