@@ -1,74 +1,82 @@
 [
   {
     "id": "curry-verde-thai",
-    "title": "Curry Verde",
+    "title": "Curry Verde Tailandés desde Cero",
     "source": "Diego Doal",
     "sourceUrl": "https://diegodoal.com/recetas/curry-verde",
     "difficulty": "Intermedia",
     "time": "2 horas",
     "servings": "4 raciones",
-    "tags": [
-      "Asia",
-      "Pollo",
-      "Picante"
-    ],
+    "tags": ["Asia", "Pollo", "Picante"],
     "ingredientGroups": [
+      {
+        "name": "Pasta de curry verde",
+        "items": [
+          ["Semillas de cilantro", "3 g"],
+          ["Semillas de comino", "1 g"],
+          ["Cardamomos verdes", "5 uds"],
+          ["Pimienta blanca", "2 g"],
+          ["Sal", "2 g"],
+          ["Chiles tailandeses verdes", "8 uds"],
+          ["Chiles de árbol verdes", "8 uds"],
+          ["Galangal", "15 g"],
+          ["Lemongrass", "20 g"],
+          ["Raíces de cilantro", "3 uds (10 g)"],
+          ["Dientes de ajo", "3 uds"],
+          ["Chalota", "1 ud (20 g)"],
+          ["Pasta de gambas", "6 g"]
+        ]
+      },
       {
         "name": "Curry verde thai",
         "items": [
-          [
-            "Leche de coco (mín. 70%)",
-            "400 ml (1 lata)"
-          ],
-          [
-            "Leche",
-            "120 ml"
-          ],
-          [
-            "Berenjenas",
-            "3 uds"
-          ],
-          [
-            "Hojas de lima kaffir (super opcional)",
-            "6 uds"
-          ],
-          [
-            "Contramuslos de pollo",
-            "6 uds"
-          ],
-          [
-            "Pasta de curry verde",
-            "100 g"
-          ],
-          [
-            "Salsa de soja",
-            "45 ml"
-          ],
-          [
-            "Azúcar",
-            "35 g"
-          ],
-          [
-            "Hojas de albahaca",
-            "30 g"
-          ]
+          ["Leche de coco (mín. 70%)", "500 ml"],
+          ["Agua", "120 ml"],
+          ["Aceite de coco", "30 ml"],
+          ["Berenjenas blancas", "5 uds"],
+          ["Hojas de lima kaffir", "6 uds"],
+          ["Contramuslos de pollo", "4 uds"],
+          ["Pasta de curry verde", "150 g"],
+          ["Salsa de pescado", "45 ml"],
+          ["Azúcar de palma", "35 g"],
+          ["Hojas de albahaca thai", "30 g"],
+          ["Chiles tailandeses rojos", "2 uds"],
+          ["Arroz jazmín", "al gusto"]
         ]
       }
     ],
     "stepGroups": [
       {
+        "name": "Pasta de curry verde",
+        "steps": [
+          "Añade a una sartén las semillas de cilantro, comino y cardamomos verdes. Tuéstalas a fuego medio-alto 2 minutos o hasta que sean muy fragantes, moviéndolas frecuentemente.",
+          "Añade las semillas al mortero con pimienta blanca y sal. Muele 2 minutos hasta que sea polvo. Retira las carcasas del cardamomo.",
+          "Quita tallos, venas y semillas a los chiles tailandeses verdes. Pícalos finos y muélelos en el mortero 5 minutos hasta obtener una pasta homogénea.",
+          "Quita tallos, venas y semillas a los chiles de árbol verdes. Pícalos finos y muélelos en el mortero 4 minutos.",
+          "Pica el galangal y muélelo en el mortero 3 minutos.",
+          "Pela el lemongrass, corta el extremo inferior, pícalo fino y muélelo 3 minutos.",
+          "Corta las raíces de cilantro, lávalas, pícalas fino y muélelas 4 minutos.",
+          "Pela y pica la chalota. Muélela en el mortero 2 minutos.",
+          "Pela y pica los ajos. Muélelos en el mortero 2 minutos.",
+          "Envuelve la pasta de gambas en aluminio y tuéstala sobre fuego abierto hasta que sea muy fragante. Añádela al mortero y mezcla 2 minutos más.",
+          "Envasa la pasta en un bote. Refrigerar hasta 1 semana o congelar hasta 3 meses."
+        ]
+      },
+      {
         "name": "Curry verde thai",
         "steps": [
           "Quita los tallos a las hojas de lima kaffir. Corta 2 hojas en hilos finitos (para emplatar). Corta el resto en trozos pequeños.",
-          "Quita los tallos a las berenjenas, pélalas pero no del todo (según te guste mas o menos la piel), córtalas en cubos pequeños y resérvalas en agua salada.",
+          "Quita los tallos a las berenjenas, córtalas en cubos pequeños y resérvalas en agua salada.",
           "Quita piel y huesos a los contramuslos de pollo, córtalos en trozos pequeños y sazónalos con sal.",
-          "En una cacerola a fuego medio, añade 120 ml de leche de coco. Lleva a ebullición y cocina 1 minuto hasta que espese.",
+          "En una cacerola a fuego medio, añade aceite de coco y 120 ml de leche de coco. Lleva a ebullición y cocina 1 minuto hasta que espese.",
           "Añade la pasta de curry verde, sube a fuego medio-alto y sofríe 2 minutos hasta que borbotee agresivamente.",
-          "Añade el resto de leche de coco. Cocina 10 minutos.",
-          "Cuando la leche de coco se haya separado (nata por un lado, grasa por otro), añade salsa de soja, leche y azúcar de palma. Mezcla.",
-          "Añade los contramuslos, las hojas de lima kaffir cortadas. Hierve 10 minutos hasta que el pollo esté casi hecho.",
-          "Añade las berenjenas y cocina 7 minutos hasta que estén hechas.",
-          "Apaga el fuego y añade la albahaca cuando todo se haya enfriado un poco."
+          "Baja a fuego medio. Añade 40 ml de leche de coco y cocina 2 min. Repite dos veces más (40 ml + 2 min cada vez). Luego cocina 10 minutos.",
+          "Mientras, ralla el azúcar de palma, mide la salsa de pescado y mezcla 160 ml de leche de coco con 120 ml de agua.",
+          "Cuando la leche de coco se haya separado (nata por un lado, grasa por otro), añade salsa de pescado y azúcar de palma. Mezcla.",
+          "Añade los contramuslos, las hojas de lima kaffir cortadas y la mezcla de leche de coco y agua. Hierve 10 minutos hasta que el pollo esté casi hecho.",
+          "Mientras, corta los chiles rojos y separa las hojas de albahaca thai de los tallos.",
+          "Añade las berenjenas y cocina 3 minutos hasta que estén un poco antes de al dente.",
+          "Apaga el fuego, añade chiles y albahaca thai. Mezcla y sirve con arroz jazmín. Decora con los hilos de lima kaffir."
         ]
       }
     ]
