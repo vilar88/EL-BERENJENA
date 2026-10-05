@@ -3,86 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mis Recetas — Editor</title>
+<title>El Berenjena — Editor</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f7f5f0; --card-bg: #ffffff; --text: #1a1a1a; --text-secondary: #5a5a5a;
-  --accent: #3a7d44; --accent-light: #e8f0e4; --border: #e0ddd6; --tag-bg: #f0ece3;
+  --bg: #f5f0f5; --card-bg: #ffffff; --text: #1a1a1a; --text-secondary: #5a5a5a;
+  --accent: #5b2470; --accent-mid: #7d3d95; --accent-light: #f0e4f5; --accent-dark: #3d1a3d;
+  --border: #ddd6e0; --tag-bg: #ede3f0;
   --danger: #c0392b; --danger-light: #fdecea;
-  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.04);
+  --shadow: 0 1px 3px rgba(74,26,74,.06), 0 4px 12px rgba(74,26,74,.04);
   --radius: 10px; --max-w: 860px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #141413; --card-bg: #1e1e1c; --text: #e8e6e1; --text-secondary: #9e9b93;
-    --accent: #5cb86b; --accent-light: #1e2e1f; --border: #2e2e2a; --tag-bg: #26261f;
+    --bg: #16101a; --card-bg: #201a24; --text: #e8e2ec; --text-secondary: #9e93a5;
+    --accent: #a66bbf; --accent-mid: #c08dd6; --accent-light: #2a1e30; --accent-dark: #d4a8e8;
+    --border: #332a3a; --tag-bg: #2a1e30;
     --danger: #e74c3c; --danger-light: #2a1a1a;
-    --shadow: 0 1px 3px rgba(0,0,0,.2), 0 4px 12px rgba(0,0,0,.15);
+    --shadow: 0 1px 3px rgba(0,0,0,.25), 0 4px 12px rgba(0,0,0,.2);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #141413; --card-bg: #1e1e1c; --text: #e8e6e1; --text-secondary: #9e9b93;
-  --accent: #5cb86b; --accent-light: #1e2e1f; --border: #2e2e2a; --tag-bg: #26261f;
+  --bg: #16101a; --card-bg: #201a24; --text: #e8e2ec; --text-secondary: #9e93a5;
+  --accent: #a66bbf; --accent-mid: #c08dd6; --accent-light: #2a1e30; --accent-dark: #d4a8e8;
+  --border: #332a3a; --tag-bg: #2a1e30;
   --danger: #e74c3c; --danger-light: #2a1a1a;
-  --shadow: 0 1px 3px rgba(0,0,0,.2), 0 4px 12px rgba(0,0,0,.15);
+  --shadow: 0 1px 3px rgba(0,0,0,.25), 0 4px 12px rgba(0,0,0,.2);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text);
-  line-height: 1.6; padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
-  -webkit-font-smoothing: antialiased;
-}
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px); -webkit-font-smoothing: antialiased; }
 header { text-align: center; padding: 2rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
-header h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: .2rem; }
+header h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; font-weight: 400; color: var(--accent); margin-bottom: .2rem; }
 header p { color: var(--text-secondary); font-size: .9rem; }
-.sync-status {
-  display: inline-block; margin-top: .5rem; padding: .25rem .8rem; border-radius: 12px;
-  font-size: .75rem; font-weight: 500;
-}
-.sync-ok { background: var(--accent-light); color: var(--accent); }
+.sync-status { display: inline-block; margin-top: .5rem; padding: .25rem .8rem; border-radius: 12px; font-size: .75rem; font-weight: 500; }
+.sync-ok { background: #e8f0e4; color: #2d8a4e; }
 .sync-pending { background: #fff3cd; color: #856404; }
 .sync-error { background: var(--danger-light); color: var(--danger); }
-
 .toolbar { max-width: var(--max-w); margin: 1rem auto; padding: 0 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
-.btn {
-  padding: .6rem 1.2rem; border: none; border-radius: var(--radius);
-  font-family: inherit; font-size: .9rem; font-weight: 500; cursor: pointer; transition: all .2s;
-}
+.btn { padding: .6rem 1.2rem; border: none; border-radius: var(--radius); font-family: inherit; font-size: .9rem; font-weight: 500; cursor: pointer; transition: all .2s; }
 .btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { filter: brightness(1.1); }
+.btn-primary:hover { filter: brightness(1.15); }
 .btn-secondary { background: var(--card-bg); color: var(--text); border: 1px solid var(--border); }
 .btn-secondary:hover { background: var(--accent-light); }
 .btn-danger { background: var(--danger-light); color: var(--danger); }
 .btn-danger:hover { background: var(--danger); color: #fff; }
 .btn-sm { padding: .4rem .8rem; font-size: .8rem; }
-.btn:disabled { opacity: .5; cursor: not-allowed; }
-
 .container { max-width: var(--max-w); margin: 0 auto; padding: 1rem 1.5rem 3rem; }
 .admin-list { display: flex; flex-direction: column; gap: .75rem; }
-.admin-card {
-  background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center;
-  gap: 1rem; flex-wrap: wrap;
-}
+.admin-card { background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .admin-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.15rem; font-weight: 400; }
 .admin-card-info { color: var(--text-secondary); font-size: .8rem; }
 .admin-card-actions { display: flex; gap: .5rem; flex-shrink: 0; }
-
 .editor { display: none; }
 .editor.visible { display: block; }
-.form-section {
-  background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1.25rem 1.5rem; margin-bottom: 1rem;
-}
-.form-section h3 { font-size: .95rem; font-weight: 600; margin-bottom: .8rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); }
+.form-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+.form-section h3 { font-size: .95rem; font-weight: 600; margin-bottom: .8rem; padding-bottom: .4rem; border-bottom: 1px solid var(--border); color: var(--accent); }
 .field { margin-bottom: .8rem; }
 .field label { display: block; font-size: .82rem; font-weight: 500; color: var(--text-secondary); margin-bottom: .25rem; }
-.field input, .field textarea, .field select {
-  width: 100%; padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 6px;
-  background: var(--bg); color: var(--text); font-family: inherit; font-size: .9rem; outline: none;
-}
+.field input, .field textarea, .field select { width: 100%; padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: inherit; font-size: .9rem; outline: none; }
 .field input:focus, .field textarea:focus { border-color: var(--accent); }
 .field textarea { resize: vertical; min-height: 60px; }
 .field-row { display: flex; gap: .75rem; flex-wrap: wrap; }
@@ -90,50 +69,29 @@ header p { color: var(--text-secondary); font-size: .9rem; }
 .dynamic-list { display: flex; flex-direction: column; gap: .5rem; }
 .dynamic-row { display: flex; gap: .5rem; align-items: center; }
 .dynamic-row input { flex: 1; }
-.dynamic-row .remove-row {
-  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-  background: var(--danger-light); color: var(--danger); border: none;
-  font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
-}
+.dynamic-row .remove-row { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--danger-light); color: var(--danger); border: none; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .dynamic-row .remove-row:hover { background: var(--danger); color: #fff; }
 .group-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: .75rem; }
 .group-block h4 { font-size: .85rem; margin-bottom: .5rem; display: flex; justify-content: space-between; align-items: center; }
-.step-textarea {
-  width: 100%; padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 6px;
-  background: var(--card-bg); color: var(--text); font-family: inherit; font-size: .9rem;
-  resize: vertical; min-height: 50px; outline: none;
-}
+.step-textarea { width: 100%; padding: .55rem .8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--text); font-family: inherit; font-size: .9rem; resize: vertical; min-height: 50px; outline: none; }
 .step-textarea:focus { border-color: var(--accent); }
-.toast {
-  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: #fff; padding: .7rem 1.5rem; border-radius: var(--radius);
-  font-size: .9rem; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100;
-}
+.toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: .7rem 1.5rem; border-radius: var(--radius); font-size: .9rem; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100; }
 .toast.show { opacity: 1; }
-
-@media (max-width: 600px) {
-  header h1 { font-size: 1.6rem; }
-  .field-row { flex-direction: column; }
-  .admin-card { flex-direction: column; align-items: flex-start; }
-}
+@media (max-width: 600px) { header h1 { font-size: 1.6rem; } .field-row { flex-direction: column; } .admin-card { flex-direction: column; align-items: flex-start; } }
 </style>
 </head>
 <body>
-
 <header>
-  <h1>&#9998; Editor de Recetas</h1>
+  <h1>&#9998; El Berenjena — Editor</h1>
   <p>Añade, edita y gestiona tu biblioteca</p>
   <div id="sync-badge"></div>
 </header>
-
 <div class="container">
   <div id="main-view">
     <div class="toolbar">
       <button class="btn btn-primary" onclick="newRecipe()">+ Nueva receta</button>
       <button class="btn btn-secondary" onclick="downloadJSON()">&#11015; Descargar JSON</button>
-      <label class="btn btn-secondary" style="cursor:pointer">&#11014; Importar JSON
-        <input type="file" accept=".json" style="display:none" onchange="importJSON(event)">
-      </label>
+      <label class="btn btn-secondary" style="cursor:pointer">&#11014; Importar JSON<input type="file" accept=".json" style="display:none" onchange="importJSON(event)"></label>
       <a class="btn btn-secondary" href="index.html">&#128064; Ver biblioteca</a>
     </div>
     <div style="margin-top:1rem">
@@ -141,290 +99,48 @@ header p { color: var(--text-secondary); font-size: .9rem; }
       <div class="admin-list" id="admin-list"></div>
     </div>
   </div>
-
   <div class="editor" id="editor">
     <div class="toolbar" style="margin:0 0 1rem;padding:0">
       <button class="btn btn-secondary" onclick="cancelEdit()">&#8592; Cancelar</button>
       <button class="btn btn-primary" onclick="saveRecipe()">Guardar receta</button>
     </div>
-    <div class="form-section">
-      <h3>Información general</h3>
+    <div class="form-section"><h3>Información general</h3>
       <div class="field"><label>Título</label><input id="f-title" placeholder="Curry verde tailandés…"></div>
-      <div class="field-row">
-        <div class="field"><label>Fuente / Autor</label><input id="f-source" placeholder="Diego Doal"></div>
-        <div class="field"><label>URL de la fuente</label><input id="f-sourceUrl" placeholder="https://…"></div>
-      </div>
-      <div class="field-row">
-        <div class="field"><label>Dificultad</label>
-          <select id="f-difficulty"><option>Fácil</option><option>Intermedia</option><option>Avanzada</option></select>
-        </div>
-        <div class="field"><label>Tiempo</label><input id="f-time" placeholder="2 horas"></div>
-        <div class="field"><label>Raciones</label><input id="f-servings" placeholder="4 raciones"></div>
-      </div>
+      <div class="field-row"><div class="field"><label>Fuente / Autor</label><input id="f-source" placeholder="Diego Doal"></div><div class="field"><label>URL de la fuente</label><input id="f-sourceUrl" placeholder="https://…"></div></div>
+      <div class="field-row"><div class="field"><label>Dificultad</label><select id="f-difficulty"><option>Fácil</option><option>Intermedia</option><option>Avanzada</option></select></div><div class="field"><label>Tiempo</label><input id="f-time" placeholder="2 horas"></div><div class="field"><label>Raciones</label><input id="f-servings" placeholder="4 raciones"></div></div>
       <div class="field"><label>Etiquetas (separadas por comas)</label><input id="f-tags" placeholder="Asia, Pollo, Picante"></div>
     </div>
-    <div class="form-section">
-      <h3>Ingredientes</h3>
-      <div id="ing-groups"></div>
-      <button class="btn btn-secondary btn-sm" onclick="addIngGroup()">+ Grupo de ingredientes</button>
-    </div>
-    <div class="form-section">
-      <h3>Pasos</h3>
-      <div id="step-groups"></div>
-      <button class="btn btn-secondary btn-sm" onclick="addStepGroup()">+ Grupo de pasos</button>
-    </div>
-    <div class="toolbar" style="margin:0;padding:0">
-      <button class="btn btn-primary" onclick="saveRecipe()">Guardar receta</button>
-      <button class="btn btn-secondary" onclick="cancelEdit()">Cancelar</button>
-    </div>
+    <div class="form-section"><h3>Ingredientes</h3><div id="ing-groups"></div><button class="btn btn-secondary btn-sm" onclick="addIngGroup()">+ Grupo de ingredientes</button></div>
+    <div class="form-section"><h3>Pasos</h3><div id="step-groups"></div><button class="btn btn-secondary btn-sm" onclick="addStepGroup()">+ Grupo de pasos</button></div>
+    <div class="toolbar" style="margin:0;padding:0"><button class="btn btn-primary" onclick="saveRecipe()">Guardar receta</button><button class="btn btn-secondary" onclick="cancelEdit()">Cancelar</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
-
 <script>
-const API_KEY = '$2a$10$udT0k.3ZZQVVuuPPv/yajO5JZF5gR8chV/m6V.SwqX0t1NeVb9Ia6';
-let BIN_ID = localStorage.getItem('jsonbin_bin_id') || '';
-let recipes = [];
-let editingIndex = -1;
-
-async function init() {
-  if (BIN_ID) {
-    // Cargar desde JSONBin
-    await loadFromCloud();
-  } else {
-    // Primera vez: cargar desde local y crear bin
-    try {
-      const res = await fetch('recipes.json');
-      recipes = await res.json();
-    } catch(e) { recipes = []; }
-    await createBin();
-  }
-  renderAdminList();
-  updateSyncBadge('ok');
-}
-
-async function createBin() {
-  updateSyncBadge('pending');
-  try {
-    const res = await fetch('https://api.jsonbin.io/v3/b', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY, 'X-Bin-Name': 'recetas', 'X-Bin-Private': 'false' },
-      body: JSON.stringify(recipes)
-    });
-    const data = await res.json();
-    if (data.metadata && data.metadata.id) {
-      BIN_ID = data.metadata.id;
-      localStorage.setItem('jsonbin_bin_id', BIN_ID);
-      updateSyncBadge('ok');
-      toast('Almacén online creado');
-    } else { throw new Error('No bin ID'); }
-  } catch(e) {
-    updateSyncBadge('error');
-    toast('Error al crear almacén online');
-  }
-}
-
-async function loadFromCloud() {
-  updateSyncBadge('pending');
-  try {
-    const res = await fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', {
-      headers: { 'X-Master-Key': API_KEY }
-    });
-    const data = await res.json();
-    recipes = data.record || [];
-    updateSyncBadge('ok');
-  } catch(e) {
-    updateSyncBadge('error');
-    toast('Error al cargar recetas');
-    recipes = [];
-  }
-}
-
-async function saveToCloud() {
-  if (!BIN_ID) { await createBin(); return; }
-  updateSyncBadge('pending');
-  try {
-    const res = await fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
-      body: JSON.stringify(recipes)
-    });
-    const data = await res.json();
-    if (data.metadata) { updateSyncBadge('ok'); }
-    else { throw new Error(); }
-  } catch(e) {
-    updateSyncBadge('error');
-    toast('Error al sincronizar. Cambios guardados localmente.');
-  }
-}
-
-function updateSyncBadge(state) {
-  const el = document.getElementById('sync-badge');
-  if (state === 'ok') el.innerHTML = '<span class="sync-status sync-ok">&#10003; Sincronizado</span>';
-  else if (state === 'pending') el.innerHTML = '<span class="sync-status sync-pending">&#8635; Sincronizando…</span>';
-  else el.innerHTML = '<span class="sync-status sync-error">&#10007; Error de sincronización</span>';
-}
-
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-function renderAdminList() {
-  const list = document.getElementById('admin-list');
-  document.getElementById('admin-count').textContent = recipes.length + ' receta' + (recipes.length !== 1 ? 's' : '');
-  if (!recipes.length) { list.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-secondary)">No hay recetas. Crea una nueva o importa un JSON.</div>'; return; }
-  list.innerHTML = recipes.map((r, i) => `
-    <div class="admin-card">
-      <div><h3>${r.title}</h3><span class="admin-card-info">${r.source||''} · ${r.time||''} · ${(r.tags||[]).join(', ')}</span></div>
-      <div class="admin-card-actions">
-        <button class="btn btn-secondary btn-sm" onclick="editRecipe(${i})">Editar</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteRecipe(${i})">Borrar</button>
-      </div>
-    </div>`).join('');
-}
-
-function slugify(text) {
-  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
-
-let ingGroupCount = 0;
-function addIngGroup(name, items) {
-  const id = ingGroupCount++;
-  const div = document.createElement('div');
-  div.className = 'group-block'; div.id = 'ing-g-' + id;
-  div.innerHTML = `<h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent);outline:none;width:70%" value="${name||'Grupo '+(id+1)}" class="ing-group-name"><button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4><div class="dynamic-list" id="ing-items-${id}"></div><button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addIngRow(${id})">+ Ingrediente</button>`;
-  document.getElementById('ing-groups').appendChild(div);
-  if (items) items.forEach(([n, q]) => addIngRow(id, n, q));
-  else { addIngRow(id); addIngRow(id); }
-}
-function addIngRow(gid, name, qty) {
-  const row = document.createElement('div'); row.className = 'dynamic-row';
-  row.innerHTML = `<input placeholder="Ingrediente" value="${name||''}"><input placeholder="Cantidad" style="max-width:120px" value="${qty||''}"><button class="remove-row" onclick="this.parentElement.remove()">&times;</button>`;
-  document.getElementById('ing-items-' + gid).appendChild(row);
-}
-
-let stepGroupCount = 0;
-function addStepGroup(name, steps) {
-  const id = stepGroupCount++;
-  const div = document.createElement('div'); div.className = 'group-block'; div.id = 'step-g-' + id;
-  div.innerHTML = `<h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent);outline:none;width:70%" value="${name||'Grupo '+(id+1)}" class="step-group-name"><button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4><div class="dynamic-list" id="step-items-${id}"></div><button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addStepRow(${id})">+ Paso</button>`;
-  document.getElementById('step-groups').appendChild(div);
-  if (steps) steps.forEach(s => addStepRow(id, s));
-  else { addStepRow(id); addStepRow(id); }
-}
-function addStepRow(gid, text) {
-  const row = document.createElement('div'); row.className = 'dynamic-row'; row.style.alignItems = 'flex-start';
-  row.innerHTML = `<textarea class="step-textarea" placeholder="Describe el paso…">${text||''}</textarea><button class="remove-row" onclick="this.parentElement.remove()" style="margin-top:6px">&times;</button>`;
-  document.getElementById('step-items-' + gid).appendChild(row);
-}
-
-function newRecipe() { editingIndex = -1; clearForm(); addIngGroup(); addStepGroup(); showEditor(); }
-
-function editRecipe(i) {
-  editingIndex = i; const r = recipes[i]; clearForm();
-  document.getElementById('f-title').value = r.title;
-  document.getElementById('f-source').value = r.source || '';
-  document.getElementById('f-sourceUrl').value = r.sourceUrl || '';
-  document.getElementById('f-difficulty').value = r.difficulty || 'Intermedia';
-  document.getElementById('f-time').value = r.time || '';
-  document.getElementById('f-servings').value = r.servings || '';
-  document.getElementById('f-tags').value = (r.tags || []).join(', ');
-  (r.ingredientGroups || []).forEach(g => addIngGroup(g.name, g.items));
-  (r.stepGroups || []).forEach(g => addStepGroup(g.name, g.steps));
-  showEditor();
-}
-
-function clearForm() {
-  ingGroupCount = 0; stepGroupCount = 0;
-  document.getElementById('ing-groups').innerHTML = '';
-  document.getElementById('step-groups').innerHTML = '';
-  ['f-title','f-source','f-sourceUrl','f-time','f-servings','f-tags'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('f-difficulty').value = 'Intermedia';
-}
-
-function showEditor() {
-  document.getElementById('main-view').style.display = 'none';
-  document.getElementById('editor').classList.add('visible');
-  window.scrollTo(0, 0);
-}
-
-function cancelEdit() {
-  document.getElementById('editor').classList.remove('visible');
-  document.getElementById('main-view').style.display = 'block';
-}
-
-async function saveRecipe() {
-  const title = document.getElementById('f-title').value.trim();
-  if (!title) { toast('El título es obligatorio'); return; }
-  const recipe = {
-    id: editingIndex >= 0 ? recipes[editingIndex].id : slugify(title),
-    title,
-    source: document.getElementById('f-source').value.trim(),
-    sourceUrl: document.getElementById('f-sourceUrl').value.trim(),
-    difficulty: document.getElementById('f-difficulty').value,
-    time: document.getElementById('f-time').value.trim(),
-    servings: document.getElementById('f-servings').value.trim(),
-    tags: document.getElementById('f-tags').value.split(',').map(t => t.trim()).filter(Boolean),
-    ingredientGroups: [], stepGroups: []
-  };
-  document.querySelectorAll('#ing-groups .group-block').forEach(block => {
-    const name = block.querySelector('.ing-group-name').value.trim();
-    const items = [];
-    block.querySelectorAll('.dynamic-row').forEach(row => {
-      const inputs = row.querySelectorAll('input');
-      const n = inputs[0].value.trim(), q = inputs[1].value.trim();
-      if (n) items.push([n, q]);
-    });
-    if (items.length) recipe.ingredientGroups.push({ name, items });
-  });
-  document.querySelectorAll('#step-groups .group-block').forEach(block => {
-    const name = block.querySelector('.step-group-name').value.trim();
-    const steps = [];
-    block.querySelectorAll('.step-textarea').forEach(ta => { const v = ta.value.trim(); if (v) steps.push(v); });
-    if (steps.length) recipe.stepGroups.push({ name, steps });
-  });
-  if (editingIndex >= 0) recipes[editingIndex] = recipe;
-  else recipes.push(recipe);
-  cancelEdit();
-  renderAdminList();
-  await saveToCloud();
-  toast(editingIndex >= 0 ? 'Receta actualizada y sincronizada' : 'Receta creada y sincronizada');
-}
-
-async function deleteRecipe(i) {
-  if (!confirm('¿Borrar "' + recipes[i].title + '"?')) return;
-  recipes.splice(i, 1);
-  renderAdminList();
-  await saveToCloud();
-  toast('Receta borrada y sincronizada');
-}
-
-function downloadJSON() {
-  const blob = new Blob([JSON.stringify(recipes, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'recipes.json'; a.click(); URL.revokeObjectURL(a.href);
-  toast('recipes.json descargado');
-}
-
-function importJSON(e) {
-  const file = e.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = async (ev) => {
-    try {
-      const data = JSON.parse(ev.target.result);
-      if (!Array.isArray(data)) throw new Error();
-      recipes = data;
-      renderAdminList();
-      await saveToCloud();
-      toast(data.length + ' recetas importadas y sincronizadas');
-    } catch(err) { toast('Error: JSON no válido'); }
-  };
-  reader.readAsText(file); e.target.value = '';
-}
-
+const API_KEY='$2a$10$udT0k.3ZZQVVuuPPv/yajO5JZF5gR8chV/m6V.SwqX0t1NeVb9Ia6';
+let BIN_ID=localStorage.getItem('jsonbin_bin_id')||'';
+let recipes=[],editingIndex=-1;
+async function init(){if(BIN_ID){await loadFromCloud()}else{try{const r=await fetch('recipes.json');recipes=await r.json()}catch(e){recipes=[]}await createBin()}renderAdminList();updateSyncBadge('ok')}
+async function createBin(){updateSyncBadge('pending');try{const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY,'X-Bin-Name':'recetas','X-Bin-Private':'false'},body:JSON.stringify(recipes)});const d=await r.json();if(d.metadata&&d.metadata.id){BIN_ID=d.metadata.id;localStorage.setItem('jsonbin_bin_id',BIN_ID);updateSyncBadge('ok');toast('Almacén online creado')}else throw new Error()}catch(e){updateSyncBadge('error');toast('Error al crear almacén')}}
+async function loadFromCloud(){updateSyncBadge('pending');try{const r=await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID+'/latest',{headers:{'X-Master-Key':API_KEY}});const d=await r.json();recipes=d.record||[];updateSyncBadge('ok')}catch(e){updateSyncBadge('error');toast('Error al cargar');recipes=[]}}
+async function saveToCloud(){if(!BIN_ID){await createBin();return}updateSyncBadge('pending');try{const r=await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},body:JSON.stringify(recipes)});const d=await r.json();if(d.metadata)updateSyncBadge('ok');else throw new Error()}catch(e){updateSyncBadge('error');toast('Error al sincronizar')}}
+function updateSyncBadge(s){const e=document.getElementById('sync-badge');if(s==='ok')e.innerHTML='<span class="sync-status sync-ok">&#10003; Sincronizado</span>';else if(s==='pending')e.innerHTML='<span class="sync-status sync-pending">&#8635; Sincronizando…</span>';else e.innerHTML='<span class="sync-status sync-error">&#10007; Error</span>'}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
+function renderAdminList(){const l=document.getElementById('admin-list');document.getElementById('admin-count').textContent=recipes.length+' receta'+(recipes.length!==1?'s':'');if(!recipes.length){l.innerHTML='<div style="text-align:center;padding:2rem;color:var(--text-secondary)">No hay recetas. Crea una nueva o importa un JSON.</div>';return}l.innerHTML=recipes.map((r,i)=>`<div class="admin-card"><div><h3>${r.title}</h3><span class="admin-card-info">${r.source||''} · ${r.time||''} · ${(r.tags||[]).join(', ')}</span></div><div class="admin-card-actions"><button class="btn btn-secondary btn-sm" onclick="editRecipe(${i})">Editar</button><button class="btn btn-danger btn-sm" onclick="deleteRecipe(${i})">Borrar</button></div></div>`).join('')}
+function slugify(t){return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}
+let igc=0;function addIngGroup(n,items){const id=igc++;const d=document.createElement('div');d.className='group-block';d.id='ing-g-'+id;d.innerHTML=`<h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent-mid);outline:none;width:70%" value="${n||'Grupo '+(id+1)}" class="ing-group-name"><button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4><div class="dynamic-list" id="ing-items-${id}"></div><button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addIngRow(${id})">+ Ingrediente</button>`;document.getElementById('ing-groups').appendChild(d);if(items)items.forEach(([a,b])=>addIngRow(id,a,b));else{addIngRow(id);addIngRow(id)}}
+function addIngRow(g,n,q){const r=document.createElement('div');r.className='dynamic-row';r.innerHTML=`<input placeholder="Ingrediente" value="${n||''}"><input placeholder="Cantidad" style="max-width:120px" value="${q||''}"><button class="remove-row" onclick="this.parentElement.remove()">&times;</button>`;document.getElementById('ing-items-'+g).appendChild(r)}
+let sgc=0;function addStepGroup(n,steps){const id=sgc++;const d=document.createElement('div');d.className='group-block';d.id='step-g-'+id;d.innerHTML=`<h4><input style="border:none;background:transparent;font-weight:600;font-size:.85rem;color:var(--accent-mid);outline:none;width:70%" value="${n||'Grupo '+(id+1)}" class="step-group-name"><button class="btn btn-danger btn-sm" onclick="this.closest('.group-block').remove()">Quitar</button></h4><div class="dynamic-list" id="step-items-${id}"></div><button class="btn btn-secondary btn-sm" style="margin-top:.5rem" onclick="addStepRow(${id})">+ Paso</button>`;document.getElementById('step-groups').appendChild(d);if(steps)steps.forEach(s=>addStepRow(id,s));else{addStepRow(id);addStepRow(id)}}
+function addStepRow(g,t){const r=document.createElement('div');r.className='dynamic-row';r.style.alignItems='flex-start';r.innerHTML=`<textarea class="step-textarea" placeholder="Describe el paso…">${t||''}</textarea><button class="remove-row" onclick="this.parentElement.remove()" style="margin-top:6px">&times;</button>`;document.getElementById('step-items-'+g).appendChild(r)}
+function newRecipe(){editingIndex=-1;clearForm();addIngGroup();addStepGroup();showEditor()}
+function editRecipe(i){editingIndex=i;const r=recipes[i];clearForm();document.getElementById('f-title').value=r.title;document.getElementById('f-source').value=r.source||'';document.getElementById('f-sourceUrl').value=r.sourceUrl||'';document.getElementById('f-difficulty').value=r.difficulty||'Intermedia';document.getElementById('f-time').value=r.time||'';document.getElementById('f-servings').value=r.servings||'';document.getElementById('f-tags').value=(r.tags||[]).join(', ');(r.ingredientGroups||[]).forEach(g=>addIngGroup(g.name,g.items));(r.stepGroups||[]).forEach(g=>addStepGroup(g.name,g.steps));showEditor()}
+function clearForm(){igc=0;sgc=0;document.getElementById('ing-groups').innerHTML='';document.getElementById('step-groups').innerHTML='';['f-title','f-source','f-sourceUrl','f-time','f-servings','f-tags'].forEach(id=>document.getElementById(id).value='');document.getElementById('f-difficulty').value='Intermedia'}
+function showEditor(){document.getElementById('main-view').style.display='none';document.getElementById('editor').classList.add('visible');window.scrollTo(0,0)}
+function cancelEdit(){document.getElementById('editor').classList.remove('visible');document.getElementById('main-view').style.display='block'}
+async function saveRecipe(){const title=document.getElementById('f-title').value.trim();if(!title){toast('El título es obligatorio');return}const recipe={id:editingIndex>=0?recipes[editingIndex].id:slugify(title),title,source:document.getElementById('f-source').value.trim(),sourceUrl:document.getElementById('f-sourceUrl').value.trim(),difficulty:document.getElementById('f-difficulty').value,time:document.getElementById('f-time').value.trim(),servings:document.getElementById('f-servings').value.trim(),tags:document.getElementById('f-tags').value.split(',').map(t=>t.trim()).filter(Boolean),ingredientGroups:[],stepGroups:[]};document.querySelectorAll('#ing-groups .group-block').forEach(b=>{const n=b.querySelector('.ing-group-name').value.trim();const items=[];b.querySelectorAll('.dynamic-row').forEach(r=>{const inp=r.querySelectorAll('input');const a=inp[0].value.trim(),q=inp[1].value.trim();if(a)items.push([a,q])});if(items.length)recipe.ingredientGroups.push({name:n,items})});document.querySelectorAll('#step-groups .group-block').forEach(b=>{const n=b.querySelector('.step-group-name').value.trim();const steps=[];b.querySelectorAll('.step-textarea').forEach(ta=>{const v=ta.value.trim();if(v)steps.push(v)});if(steps.length)recipe.stepGroups.push({name:n,steps})});if(editingIndex>=0)recipes[editingIndex]=recipe;else recipes.push(recipe);cancelEdit();renderAdminList();await saveToCloud();toast(editingIndex>=0?'Receta actualizada':'Receta creada')}
+async function deleteRecipe(i){if(!confirm('¿Borrar "'+recipes[i].title+'"?'))return;recipes.splice(i,1);renderAdminList();await saveToCloud();toast('Receta borrada')}
+function downloadJSON(){const b=new Blob([JSON.stringify(recipes,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='recipes.json';a.click();URL.revokeObjectURL(a.href);toast('JSON descargado')}
+function importJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async(ev)=>{try{const d=JSON.parse(ev.target.result);if(!Array.isArray(d))throw new Error();recipes=d;renderAdminList();await saveToCloud();toast(d.length+' recetas importadas')}catch(err){toast('JSON no válido')}};r.readAsText(f);e.target.value=''}
 init();
 </script>
 </body>
